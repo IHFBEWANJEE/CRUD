@@ -19,7 +19,8 @@ export class MemberService {
         return member
     }
     async deleteById(id: number){
-        return await this.memberRepository.delete(id)
+        const result = await this.memberRepository.delete(id)
+        return result ? "succesfully deleted" : "Something was wrong"
     }
     async getAllMembers(): Promise<Member[]>{
         return await this.memberRepository.find()
@@ -32,6 +33,6 @@ export class MemberService {
             {id:id},
             {name: newName}
         )
-        return result.raw
+        return await this.memberRepository.findOneBy({ id: id })
     }
  }
