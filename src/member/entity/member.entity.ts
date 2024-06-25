@@ -24,6 +24,6 @@ export class Member{
     @Column()
     name: string
 
-    @OneToMany(() => Todo, (todo) => todo.id)
+    @OneToMany(() => Todo, (todo) => todo.member)
     todos: Todo[]
 }
