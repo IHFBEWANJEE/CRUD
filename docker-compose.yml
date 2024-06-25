@@ -12,7 +12,7 @@ services:
       - '3000:3000'
     
   mysql:
-    image: mysql:latest
+    image: mysql:8
     restart: always
     container_name: database
     ports:
