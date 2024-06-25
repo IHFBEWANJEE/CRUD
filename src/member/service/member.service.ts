@@ -18,4 +18,7 @@ export class MemberService {
         await this.memberRepository.save(member)
         return member
     }
+    async deleteById(id: number){
+        this.memberRepository.delete
+    }
  }
