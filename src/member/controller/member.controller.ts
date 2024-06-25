@@ -5,20 +5,24 @@ import { MemberRequest } from "../service/dto/request/member.dto.request";
 @Controller("member")
 export class MemberController {
     constructor(private memberService: MemberService) { }
+
     @Get("all")
-    findAllMembers(){
-        return this.memberService.getAllMembers()
+    async findAllMembers(){
+        return await this.memberService.getAllMembers();
     }
+
     @Post("register")
-    registerMember(@Body() memberRequest: MemberRequest){
-        return this.memberService.registerMember(memberRequest)
+    async registerMember(@Body() memberRequest: MemberRequest){
+        return await this.memberService.registerMember(memberRequest)
     }
+
     @Put("update/:id")
-    updateMember(@Param("id") id: number, @Body('name') newName: string) {
-        return this.memberService.updateMemberName(id, newName)
+    async updateMember(@Param("id") id: number, @Body('name') newName: string) {
+        return await this.memberService.updateMemberName(id, newName)
     }
+    
     @Delete("delete/:id")
-    deleteMember(@Param("id") id: number){
-        return this.memberService.deleteById(id)
+    async deleteMember(@Param("id") id: number){
+        return await this.memberService.deleteById(id)
     }
 }
