@@ -24,7 +24,8 @@ let TypeOrmConfigService = class TypeOrmConfigService {
             username: this.configService.get('DATABASE_USERNAME'),
             password: this.configService.get('DATABASE_PASSWORD'),
             database: this.configService.get('DATABASE_NAME'),
-            entities: [],
+            entities: [__dirname + '/../**/*.entity.{js, ts}'],
+            logging: true,
             synchronize: true
         };
     }
