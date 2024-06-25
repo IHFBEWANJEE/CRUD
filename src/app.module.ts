@@ -4,8 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmConfigService } from './config/typeorm.config.service';
-import { Todo } from './todo/entity/todo.entity';
-import { Member } from './member/entity/member.entity';
+import { MemberModule } from './member/module/member.module';
 
 @Module({
   imports: [
@@ -15,10 +14,7 @@ import { Member } from './member/entity/member.entity';
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService
     }),
-    TypeOrmModule.forRoot({
-      entities: [Member, Todo],
-    }),
-    TypeOrmModule.forFeature([Member, Todo])
+    MemberModule
   ],
   controllers: [AppController],
   providers: [AppService],
