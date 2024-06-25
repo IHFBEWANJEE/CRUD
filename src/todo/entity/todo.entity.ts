@@ -1,5 +1,5 @@
 import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Member } from "./member.entity";
+import { Member } from "../../member/entity/member.entity";
 
 @Entity("todo")
 export class Todo{
