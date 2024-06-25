@@ -19,6 +19,19 @@ export class MemberService {
         return member
     }
     async deleteById(id: number){
-        this.memberRepository.delete
+        return await this.memberRepository.delete(id)
+    }
+    async getAllMembers(): Promise<Member[]>{
+        return await this.memberRepository.find()
+    }
+    async findById(id: number):Promise<Member>{
+        return await this.memberRepository.findOneBy({ id: id })
+    }
+    async updateMemberName(id: number, newName: string): Promise<Member>{
+        const result = await this.memberRepository.update(
+            {id:id},
+            {name: newName}
+        )
+        return result.raw
     }
  }
