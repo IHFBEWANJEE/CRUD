@@ -1,8 +1,24 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Member } from "../../member/entity/member.entity";
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm";
+import {Member} from "../../member/entity/member.entity";
+import {TodoRequest} from "../service/dto/request/todo.dto.request";
 
 @Entity("todo")
-export class Todo{
+export class Todo {
+    constructor(partial?: Partial<TodoRequest>) {
+        if (partial) {
+            this.title = partial.title
+            this.contents = partial.contents
+        }
+    }
+
     @PrimaryGeneratedColumn()
     id: number
 
@@ -19,6 +35,6 @@ export class Todo{
     updatedAt: Date
 
     @ManyToOne(() => Member, (member) => member.todos)
-    @JoinColumn({ name: 'member_id' })
+    @JoinColumn({name: 'member_id'})
     member: Member
 }
