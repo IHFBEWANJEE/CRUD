@@ -5,7 +5,7 @@ export declare class MemberService {
     private memberRepository;
     constructor(memberRepository: Repository<Member>);
     registerMember(memberRequest: MemberRequest): Promise<Member>;
-    deleteById(id: number): Promise<import("typeorm").DeleteResult>;
+    deleteById(id: number): Promise<string>;
     getAllMembers(): Promise<Member[]>;
     findById(id: number): Promise<Member>;
     updateMemberName(id: number, newName: string): Promise<Member>;

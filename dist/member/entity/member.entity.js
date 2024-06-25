@@ -13,6 +13,13 @@ exports.Member = void 0;
 const typeorm_1 = require("typeorm");
 const todo_entity_1 = require("../../todo/entity/todo.entity");
 let Member = class Member {
+    constructor(partial) {
+        if (partial) {
+            this.member_id = partial.member_id;
+            this.password = partial.password;
+            this.name = partial.name;
+        }
+    }
 };
 exports.Member = Member;
 __decorate([
@@ -36,6 +43,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Member.prototype, "todos", void 0);
 exports.Member = Member = __decorate([
-    (0, typeorm_1.Entity)("member")
+    (0, typeorm_1.Entity)("member"),
+    __metadata("design:paramtypes", [Object])
 ], Member);
 //# sourceMappingURL=member.entity.js.map

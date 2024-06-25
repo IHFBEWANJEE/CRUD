@@ -20,17 +20,17 @@ let MemberController = class MemberController {
     constructor(memberService) {
         this.memberService = memberService;
     }
-    findAllMembers() {
-        return this.memberService.getAllMembers();
+    async findAllMembers() {
+        return await this.memberService.getAllMembers();
     }
-    registerMember(memberRequest) {
-        return this.memberService.registerMember(memberRequest);
+    async registerMember(memberRequest) {
+        return await this.memberService.registerMember(memberRequest);
     }
-    updateMember(id, newName) {
-        return this.memberService.updateMemberName(id, newName);
+    async updateMember(id, newName) {
+        return await this.memberService.updateMemberName(id, newName);
     }
-    deleteMember(id) {
-        return this.memberService.deleteById(id);
+    async deleteMember(id) {
+        return await this.memberService.deleteById(id);
     }
 };
 exports.MemberController = MemberController;
@@ -38,14 +38,14 @@ __decorate([
     (0, common_1.Get)("all"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MemberController.prototype, "findAllMembers", null);
 __decorate([
     (0, common_1.Post)("register"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [member_dto_request_1.MemberRequest]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MemberController.prototype, "registerMember", null);
 __decorate([
     (0, common_1.Put)("update/:id"),
@@ -53,14 +53,14 @@ __decorate([
     __param(1, (0, common_1.Body)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MemberController.prototype, "updateMember", null);
 __decorate([
     (0, common_1.Delete)("delete/:id"),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MemberController.prototype, "deleteMember", null);
 exports.MemberController = MemberController = __decorate([
     (0, common_1.Controller)("member"),

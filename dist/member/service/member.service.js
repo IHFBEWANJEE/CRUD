@@ -22,15 +22,13 @@ let MemberService = class MemberService {
         this.memberRepository = memberRepository;
     }
     async registerMember(memberRequest) {
-        const member = new member_entity_1.Member();
-        member.member_id = memberRequest.member_id;
-        member.name = memberRequest.name;
-        member.password = memberRequest.password;
+        const member = new member_entity_1.Member(memberRequest);
         await this.memberRepository.save(member);
         return member;
     }
     async deleteById(id) {
-        return await this.memberRepository.delete(id);
+        const result = await this.memberRepository.delete(id);
+        return result ? "succesfully deleted" : "Something was wrong";
     }
     async getAllMembers() {
         return await this.memberRepository.find();
@@ -40,7 +38,7 @@ let MemberService = class MemberService {
     }
     async updateMemberName(id, newName) {
         const result = await this.memberRepository.update({ id: id }, { name: newName });
-        return result.raw;
+        return await this.memberRepository.findOneBy({ id: id });
     }
 };
 exports.MemberService = MemberService;
