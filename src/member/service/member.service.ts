@@ -16,7 +16,7 @@ export class MemberService {
         return member
     }
 
-    async deleteById(id: number){
+    async deleteById(id: number): Promise<string>{
         const result = await this.memberRepository.delete(id)
         return result ? "succesfully deleted" : "Something was wrong"
     }
