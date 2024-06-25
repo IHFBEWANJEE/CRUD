@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmConfigService } from './config/typeorm.config.service';
 import { MemberModule } from './member/module/member.module';
+import { TodoModule } from './todo/module/todo.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { MemberModule } from './member/module/member.module';
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService
     }),
-    MemberModule
+    MemberModule,
+    TodoModule
   ],
   controllers: [AppController],
   providers: [AppService],
