@@ -13,28 +13,31 @@ export class MemberService {
 
     async registerMember(memberRequest: MemberRequest): Promise<Member> {
         const member = new Member(memberRequest);
-        await this.memberRepository.save(member)
-        return member
+        await this.memberRepository.save(member);
+        return member;
     }
 
     async deleteById(id: number): Promise<string> {
-        const result = await this.memberRepository.delete(id)
-        return result ? "successfully deleted" : "Something was wrong"
+        const result = await this.memberRepository.delete(id);
+        return result ? "successfully deleted" : "Something was wrong";
     }
 
     async getAllMembers(): Promise<Member[]> {
-        return await this.memberRepository.find()
+        return await this.memberRepository.find();
     }
 
     async findById(id: number): Promise<Member> {
-        return await this.memberRepository.findOneBy({id: id})
+        return await this.memberRepository.findOneBy({id: id});
     }
 
-    async updateMemberName(id: number, newName: string): Promise<Member> {
+    async updateMemberName(id: number, newName: string): Promise<Member | string> {
         const result = await this.memberRepository.update(
             {id: id},
             {name: newName}
-        )
-        return await this.memberRepository.findOneBy({id: id})
+        );
+        if (!result.affected) {
+            return "not updated";
+        }
+        return await this.memberRepository.findOneBy({id: id});
     }
 }
