@@ -24,6 +24,6 @@ export class TodoService {
     async deleteTodo(todoId: number, memberId: number): Promise<string> {
         const todo: Todo = await this.todoRepository.findOneBy({id: todoId});
         const member: Member = await this.memberRepository.findOneBy({id: memberId});
-        return member.deleteTodo(todo) ? `successfully deleted todo with id : ${todoId} ` : "something was wrong";
+        return await member.deleteTodo(todo) ? `successfully deleted todo with id : ${todoId} ` : "something was wrong";
     }
 }
