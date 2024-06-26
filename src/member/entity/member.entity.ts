@@ -28,16 +28,5 @@ export class Member {
     @OneToMany(() => Todo, (todo) => todo.member, {eager: true})
     todos: Todo[];
 
-    async addTodo(todo: Todo) {
-        this.todos.push(todo);
-    }
 
-    async deleteTodo(todo: Todo): Promise<Boolean> {
-        const index: number = this.todos.findIndex(t => t.id === todo.id);
-        if (index > -1) {
-            this.todos.splice(index, 1);
-            return true;
-        }
-        return false;
-    }
 }
