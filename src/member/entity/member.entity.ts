@@ -6,26 +6,27 @@ import {MemberRequest} from "../service/dto/request/member.dto.request";
 export class Member {
     constructor(partial?: Partial<MemberRequest>) {
         if (partial) {
-            this.email = partial.email
-            this.password = partial.password
-            this.name = partial.name
+            this.email = partial.email;
+            this.password = partial.password;
+            this.name = partial.name;
+            this.todos = [];
         }
     }
 
     @PrimaryGeneratedColumn()
-    id: number
+    id: number;
 
     @Column({unique: true})
-    email: string
+    email: string;
 
     @Column()
-    password: string
+    password: string;
 
     @Column()
-    name: string
+    name: string;
 
     @OneToMany(() => Todo, (todo) => todo.member)
-    todos: Todo[]
+    todos: Todo[];
 
     async addTodo(todo: Todo) {
         return this.todos.push(todo);
