@@ -16,15 +16,15 @@ export class TodoService {
 
     async createTodo(todoRequest: TodoRequest, memberId: number): Promise<Todo> {
         const todo: Todo = new Todo(todoRequest);
-        const member: Member = await this.memberRepository.findOneBy({id: memberId});
+        const member: Member = await this.memberRepository.findOneBy({memberId: memberId});
         this.addTodo(member, todo);
         console.log(member);
         return await this.todoRepository.save(todo);
     }
 
     async deleteTodo(todoId: number, memberId: number): Promise<string> {
-        const todo: Todo = await this.todoRepository.findOneBy({id: todoId});
-        const member: Member = await this.memberRepository.findOneBy({id: memberId});
+        const todo: Todo = await this.todoRepository.findOneBy({todoId: todoId});
+        const member: Member = await this.memberRepository.findOneBy({memberId: memberId});
         console.log(member);
         return this.removeTodo(member, todo) ? `successfully deleted todo with id : ${todoId} ` : "something was wrong";
     }
@@ -34,7 +34,7 @@ export class TodoService {
     }
 
     private removeTodo(member: Member, todo: Todo) {
-        const index: number = member.todos.findIndex(t => t.id === todo.id);
+        const index: number = member.todos.findIndex(t => t.todoId === todo.todoId);
         if (index > -1) {
             member.todos.splice(index, 1);
             return true;
