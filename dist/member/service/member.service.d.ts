@@ -8,5 +8,5 @@ export declare class MemberService {
     deleteById(id: number): Promise<string>;
     getAllMembers(): Promise<Member[]>;
     findById(id: number): Promise<Member>;
-    updateMemberName(id: number, newName: string): Promise<Member>;
+    updateMemberName(id: number, newName: string): Promise<Member | string>;
 }

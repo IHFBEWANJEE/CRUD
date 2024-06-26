@@ -15,10 +15,21 @@ const todo_entity_1 = require("../../todo/entity/todo.entity");
 let Member = class Member {
     constructor(partial) {
         if (partial) {
-            this.member_id = partial.member_id;
+            this.email = partial.email;
             this.password = partial.password;
             this.name = partial.name;
         }
+    }
+    async addTodo(todo) {
+        this.todos.push(todo);
+    }
+    async deleteTodo(todo) {
+        const index = this.todos.findIndex(t => t.id === todo.id);
+        if (index > -1) {
+            this.todos.splice(index, 1);
+            return true;
+        }
+        return false;
     }
 };
 exports.Member = Member;
@@ -29,7 +40,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
-], Member.prototype, "member_id", void 0);
+], Member.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -39,7 +50,7 @@ __decorate([
     __metadata("design:type", String)
 ], Member.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => todo_entity_1.Todo, (todo) => todo.id),
+    (0, typeorm_1.OneToMany)(() => todo_entity_1.Todo, (todo) => todo.member),
     __metadata("design:type", Array)
 ], Member.prototype, "todos", void 0);
 exports.Member = Member = __decorate([

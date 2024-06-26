@@ -17,7 +17,7 @@ exports.MemberRequest = MemberRequest;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], MemberRequest.prototype, "member_id", void 0);
+], MemberRequest.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.MinLength)(2),

@@ -28,7 +28,7 @@ let MemberService = class MemberService {
     }
     async deleteById(id) {
         const result = await this.memberRepository.delete(id);
-        return result ? "succesfully deleted" : "Something was wrong";
+        return result ? "successfully deleted" : "Something was wrong";
     }
     async getAllMembers() {
         return await this.memberRepository.find();
@@ -38,6 +38,9 @@ let MemberService = class MemberService {
     }
     async updateMemberName(id, newName) {
         const result = await this.memberRepository.update({ id: id }, { name: newName });
+        if (!result.affected) {
+            return "not updated";
+        }
         return await this.memberRepository.findOneBy({ id: id });
     }
 };

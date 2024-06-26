@@ -6,6 +6,6 @@ export declare class MemberController {
     constructor(memberService: MemberService);
     findAllMembers(): Promise<Member[]>;
     registerMember(memberRequest: MemberRequest): Promise<Member>;
-    updateMember(id: number, newName: string): Promise<Member>;
+    updateMember(id: number, newName: string): Promise<Member | string>;
     deleteMember(id: number): Promise<string>;
 }

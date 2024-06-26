@@ -1,5 +1,5 @@
 export declare class MemberRequest {
-    member_id: string;
+    email: string;
     password: string;
     name: string;
 }
