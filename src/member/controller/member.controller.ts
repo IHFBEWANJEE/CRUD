@@ -18,7 +18,7 @@ export class MemberController {
     }
 
     @Put("update/:id")
-    async updateMember(@Param("id") id: number, @Body('name') newName: string): Promise<Member> {
+    async updateMember(@Param("id") id: number, @Body('name') newName: string): Promise<Member | string> {
         return await this.memberService.updateMemberName(id, newName)
     }
 
