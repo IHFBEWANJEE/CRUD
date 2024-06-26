@@ -27,17 +27,17 @@ export class MemberService {
     }
 
     async findById(id: number): Promise<Member> {
-        return await this.memberRepository.findOneBy({id: id});
+        return await this.memberRepository.findOneBy({memberId: id});
     }
 
     async updateMemberName(id: number, newName: string): Promise<Member | string> {
         const result = await this.memberRepository.update(
-            {id: id},
+            {memberId: id},
             {name: newName}
         );
         if (!result.affected) {
             return "not updated";
         }
-        return await this.memberRepository.findOneBy({id: id});
+        return await this.memberRepository.findOneBy({memberId: id});
     }
 }
