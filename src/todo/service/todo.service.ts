@@ -18,12 +18,14 @@ export class TodoService {
         const todo: Todo = new Todo(todoRequest);
         const member: Member = await this.memberRepository.findOneBy({id: memberId});
         this.addTodo(member, todo);
+        console.log(member);
         return await this.todoRepository.save(todo);
     }
 
     async deleteTodo(todoId: number, memberId: number): Promise<string> {
         const todo: Todo = await this.todoRepository.findOneBy({id: todoId});
         const member: Member = await this.memberRepository.findOneBy({id: memberId});
+        console.log(member);
         return this.removeTodo(member, todo) ? `successfully deleted todo with id : ${todoId} ` : "something was wrong";
     }
 

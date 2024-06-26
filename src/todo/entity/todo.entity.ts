@@ -19,8 +19,8 @@ export class Todo {
         }
     }
 
-    @PrimaryGeneratedColumn({name: "todo_id"})
-    id: number
+    @PrimaryGeneratedColumn()
+    todoId: number
 
     @Column()
     title: string
@@ -35,6 +35,6 @@ export class Todo {
     updatedAt: Date
 
     @ManyToOne(() => Member, (member) => member.todos, {onDelete: 'CASCADE'})
-    @JoinColumn({name: 'member_id'})
+    @JoinColumn({name: "memberId"})
     member: Member
 }

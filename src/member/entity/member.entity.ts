@@ -13,8 +13,8 @@ export class Member {
         }
     }
 
-    @PrimaryGeneratedColumn({name: "member_id"})
-    id: number;
+    @PrimaryGeneratedColumn()
+    memberId: number;
 
     @Column({unique: true})
     email: string;
