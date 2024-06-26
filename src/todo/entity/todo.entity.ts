@@ -19,7 +19,7 @@ export class Todo {
         }
     }
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({name: "todo_id"})
     id: number
 
     @Column()

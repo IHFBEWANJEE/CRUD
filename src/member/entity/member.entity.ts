@@ -13,7 +13,7 @@ export class Member {
         }
     }
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({name: "member_id"})
     id: number;
 
     @Column({unique: true})
@@ -29,6 +29,7 @@ export class Member {
     todos: Todo[];
 
     async addTodo(todo: Todo) {
+        console.log(this.todos);
         return this.todos.push(todo);
     }
 
