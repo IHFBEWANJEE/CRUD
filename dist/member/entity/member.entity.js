@@ -18,10 +18,12 @@ let Member = class Member {
             this.email = partial.email;
             this.password = partial.password;
             this.name = partial.name;
+            this.todos = [];
         }
     }
     async addTodo(todo) {
         this.todos.push(todo);
+        console.log(this.todos);
     }
     async deleteTodo(todo) {
         const index = this.todos.findIndex(t => t.id === todo.id);
@@ -34,7 +36,7 @@ let Member = class Member {
 };
 exports.Member = Member;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ name: "member_id" }),
     __metadata("design:type", Number)
 ], Member.prototype, "id", void 0);
 __decorate([
@@ -50,7 +52,7 @@ __decorate([
     __metadata("design:type", String)
 ], Member.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => todo_entity_1.Todo, (todo) => todo.member),
+    (0, typeorm_1.OneToMany)(() => todo_entity_1.Todo, (todo) => todo.member, { eager: true }),
     __metadata("design:type", Array)
 ], Member.prototype, "todos", void 0);
 exports.Member = Member = __decorate([

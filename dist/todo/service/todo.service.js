@@ -32,7 +32,9 @@ let TodoService = class TodoService {
     async deleteTodo(todoId, memberId) {
         const todo = await this.todoRepository.findOneBy({ id: todoId });
         const member = await this.memberRepository.findOneBy({ id: memberId });
-        return member.deleteTodo(todo) ? `successfully deleted todo with id : ${todoId} ` : "something was wrong";
+        console.log(todo);
+        console.log(member);
+        return await member.deleteTodo(todo) ? `successfully deleted todo with id : ${todoId} ` : "something was wrong";
     }
 };
 exports.TodoService = TodoService;

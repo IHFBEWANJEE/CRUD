@@ -22,7 +22,7 @@ let Todo = class Todo {
 };
 exports.Todo = Todo;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ name: "todo_id" }),
     __metadata("design:type", Number)
 ], Todo.prototype, "id", void 0);
 __decorate([
