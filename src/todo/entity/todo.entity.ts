@@ -34,7 +34,7 @@ export class Todo {
     @UpdateDateColumn()
     updatedAt: Date
 
-    @ManyToOne(() => Member, (member) => member.todos)
+    @ManyToOne(() => Member, (member) => member.todos, {onDelete: 'CASCADE'})
     @JoinColumn({name: 'member_id'})
     member: Member
 }
