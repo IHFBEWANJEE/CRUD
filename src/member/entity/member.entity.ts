@@ -25,12 +25,11 @@ export class Member {
     @Column()
     name: string;
 
-    @OneToMany(() => Todo, (todo) => todo.member)
+    @OneToMany(() => Todo, (todo) => todo.member, {eager: true})
     todos: Todo[];
 
     async addTodo(todo: Todo) {
-        console.log(this.todos);
-        return this.todos.push(todo);
+        this.todos.push(todo);
     }
 
     async deleteTodo(todo: Todo): Promise<Boolean> {
