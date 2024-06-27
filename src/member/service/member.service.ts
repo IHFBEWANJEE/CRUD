@@ -3,6 +3,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {Member} from "../entity/member.entity";
 import {Repository} from "typeorm";
 import {MemberRequest} from "./dto/request/member.dto.request";
+import {UpdateMemberNameInput} from "../entity/input/update-member-name.input";
 
 @Injectable()
 export class MemberService {
@@ -39,5 +40,14 @@ export class MemberService {
             return "not updated";
         }
         return await this.memberRepository.findOneBy({memberId: id});
+    }
+
+    async updateMemberNameWithMutation(input: UpdateMemberNameInput): Promise<Member> {
+        const member: Member = await this.memberRepository.findOne({where: {memberId: input.id}});
+        if (member == null) {
+            throw new Error("Member Not Found");
+        }
+        member.changeName(input.name);
+        return await this.memberRepository.save(member);
     }
 }
