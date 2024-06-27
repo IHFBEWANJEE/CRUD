@@ -16,17 +16,25 @@ export class TodoService {
 
     async createTodo(todoRequest: TodoRequest, memberId: number): Promise<Todo> {
         const todo: Todo = new Todo(todoRequest);
+        const createdTodo = await this.todoRepository.save(todo);
+
         const member: Member = await this.memberRepository.findOneBy({memberId: memberId});
-        this.addTodo(member, todo);
-        console.log(member);
-        return await this.todoRepository.save(todo);
+        member.addTodos([createdTodo]);
+
+        await this.memberRepository.save(member);
+
+        return createdTodo;
     }
 
     async deleteTodo(todoId: number, memberId: number): Promise<string> {
         const todo: Todo = await this.todoRepository.findOneBy({todoId: todoId});
         const member: Member = await this.memberRepository.findOneBy({memberId: memberId});
-        console.log(member);
-        return this.removeTodo(member, todo) ? `successfully deleted todo with id : ${todoId} ` : "something was wrong";
+
+        this.removeTodo(member, todo);
+        await this.todoRepository.delete({todoId: todoId});
+
+        await this.memberRepository.save(member);
+        return "success";
     }
 
     private addTodo(member: Member, todo: Todo) {
@@ -37,8 +45,6 @@ export class TodoService {
         const index: number = member.todos.findIndex(t => t.todoId === todo.todoId);
         if (index > -1) {
             member.todos.splice(index, 1);
-            return true;
         }
-        return false;
     }
 }
