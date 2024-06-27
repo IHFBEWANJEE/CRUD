@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Member = void 0;
 const typeorm_1 = require("typeorm");
 const todo_entity_1 = require("../../todo/entity/todo.entity");
+const graphql_1 = require("@nestjs/graphql");
 let Member = class Member {
     constructor(partial) {
         if (partial) {
@@ -21,41 +22,41 @@ let Member = class Member {
             this.todos = [];
         }
     }
-    async addTodo(todo) {
-        this.todos.push(todo);
-        console.log(this.todos);
+    addTodos(todos) {
+        this.todos = [...this.todos, ...todos];
     }
-    async deleteTodo(todo) {
-        const index = this.todos.findIndex(t => t.id === todo.id);
-        if (index > -1) {
-            this.todos.splice(index, 1);
-            return true;
-        }
-        return false;
+    changeName(name) {
+        this.name = name;
     }
 };
 exports.Member = Member;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ name: "member_id" }),
+    (0, graphql_1.Field)(() => graphql_1.ID),
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Member.prototype, "id", void 0);
+], Member.prototype, "memberId", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => String),
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
 ], Member.prototype, "email", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => String),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Member.prototype, "password", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => String),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Member.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => todo_entity_1.Todo, (todo) => todo.member, { eager: true }),
+    (0, graphql_1.Field)(() => [todo_entity_1.Todo], { nullable: true }),
+    (0, typeorm_1.OneToMany)(() => todo_entity_1.Todo, (todo) => todo.member, { eager: true, cascade: true }),
     __metadata("design:type", Array)
 ], Member.prototype, "todos", void 0);
 exports.Member = Member = __decorate([
+    (0, graphql_1.ObjectType)(),
     (0, typeorm_1.Entity)("member"),
     __metadata("design:paramtypes", [Object])
 ], Member);

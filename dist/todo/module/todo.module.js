@@ -13,6 +13,7 @@ const todo_entity_1 = require("../entity/todo.entity");
 const todo_controller_1 = require("../controller/todo.controller");
 const todo_service_1 = require("../service/todo.service");
 const member_entity_1 = require("../../member/entity/member.entity");
+const todo_resolver_1 = require("../resolver/todo.resolver");
 let TodoModule = class TodoModule {
 };
 exports.TodoModule = TodoModule;
@@ -22,7 +23,7 @@ exports.TodoModule = TodoModule = __decorate([
             typeorm_1.TypeOrmModule.forFeature([todo_entity_1.Todo, member_entity_1.Member]),
         ],
         controllers: [todo_controller_1.TodoController],
-        providers: [todo_service_1.TodoService]
+        providers: [todo_service_1.TodoService, todo_resolver_1.TodoResolver]
     })
 ], TodoModule);
 //# sourceMappingURL=todo.module.js.map

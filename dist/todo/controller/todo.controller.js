@@ -29,7 +29,7 @@ let TodoController = class TodoController {
 };
 exports.TodoController = TodoController;
 __decorate([
-    (0, common_1.Post)("/:memberId/create"),
+    (0, common_1.Post)("/:memberId/todo"),
     __param(0, (0, common_1.Param)("memberId")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -37,7 +37,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodoController.prototype, "createTodo", null);
 __decorate([
-    (0, common_1.Delete)("/:memberId/delete/:todoId"),
+    (0, common_1.Delete)("/:memberId/todos/:todoId"),
     __param(0, (0, common_1.Param)("memberId")),
     __param(1, (0, common_1.Param)("todoId")),
     __metadata("design:type", Function),
@@ -45,7 +45,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodoController.prototype, "deleteTodo", null);
 exports.TodoController = TodoController = __decorate([
-    (0, common_1.Controller)("todo"),
+    (0, common_1.Controller)("members"),
     __metadata("design:paramtypes", [todo_service_1.TodoService])
 ], TodoController);
 //# sourceMappingURL=todo.controller.js.map

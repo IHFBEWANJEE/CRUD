@@ -8,4 +8,6 @@ export declare class TodoService {
     constructor(todoRepository: Repository<Todo>, memberRepository: Repository<Member>);
     createTodo(todoRequest: TodoRequest, memberId: number): Promise<Todo>;
     deleteTodo(todoId: number, memberId: number): Promise<string>;
+    private addTodo;
+    private removeTodo;
 }

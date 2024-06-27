@@ -15,6 +15,9 @@ const config_1 = require("@nestjs/config");
 const typeorm_config_service_1 = require("./config/typeorm.config.service");
 const member_module_1 = require("./member/module/member.module");
 const todo_module_1 = require("./todo/module/todo.module");
+const graphql_1 = require("@nestjs/graphql");
+const apollo_1 = require("@nestjs/apollo");
+const product_module_1 = require("./product/module/product.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -27,8 +30,14 @@ exports.AppModule = AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRootAsync({
                 useClass: typeorm_config_service_1.TypeOrmConfigService
             }),
+            graphql_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                playground: true,
+                autoSchemaFile: true,
+            }),
             member_module_1.MemberModule,
-            todo_module_1.TodoModule
+            todo_module_1.TodoModule,
+            product_module_1.ProductModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

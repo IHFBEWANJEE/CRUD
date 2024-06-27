@@ -25,16 +25,28 @@ let TodoService = class TodoService {
     }
     async createTodo(todoRequest, memberId) {
         const todo = new todo_entity_1.Todo(todoRequest);
-        const member = await this.memberRepository.findOneBy({ id: memberId });
-        await member.addTodo(todo);
-        return await this.todoRepository.save(todo);
+        const createdTodo = await this.todoRepository.save(todo);
+        const member = await this.memberRepository.findOneBy({ memberId: memberId });
+        member.addTodos([createdTodo]);
+        await this.memberRepository.save(member);
+        return createdTodo;
     }
     async deleteTodo(todoId, memberId) {
-        const todo = await this.todoRepository.findOneBy({ id: todoId });
-        const member = await this.memberRepository.findOneBy({ id: memberId });
-        console.log(todo);
-        console.log(member);
-        return await member.deleteTodo(todo) ? `successfully deleted todo with id : ${todoId} ` : "something was wrong";
+        const todo = await this.todoRepository.findOneBy({ todoId: todoId });
+        const member = await this.memberRepository.findOneBy({ memberId: memberId });
+        this.removeTodo(member, todo);
+        await this.todoRepository.delete({ todoId: todoId });
+        await this.memberRepository.save(member);
+        return "success";
+    }
+    addTodo(member, todo) {
+        member.todos.push(todo);
+    }
+    removeTodo(member, todo) {
+        const index = member.todos.findIndex(t => t.todoId === todo.todoId);
+        if (index > -1) {
+            member.todos.splice(index, 1);
+        }
     }
 };
 exports.TodoService = TodoService;

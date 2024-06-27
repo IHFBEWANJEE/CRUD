@@ -34,14 +34,22 @@ let MemberService = class MemberService {
         return await this.memberRepository.find();
     }
     async findById(id) {
-        return await this.memberRepository.findOneBy({ id: id });
+        return await this.memberRepository.findOneBy({ memberId: id });
     }
     async updateMemberName(id, newName) {
-        const result = await this.memberRepository.update({ id: id }, { name: newName });
+        const result = await this.memberRepository.update({ memberId: id }, { name: newName });
         if (!result.affected) {
             return "not updated";
         }
-        return await this.memberRepository.findOneBy({ id: id });
+        return await this.memberRepository.findOneBy({ memberId: id });
+    }
+    async updateMemberNameWithMutation(input) {
+        const member = await this.memberRepository.findOne({ where: { memberId: input.id } });
+        if (member == null) {
+            throw new Error("Member Not Found");
+        }
+        member.changeName(input.name);
+        return await this.memberRepository.save(member);
     }
 };
 exports.MemberService = MemberService;

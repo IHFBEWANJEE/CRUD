@@ -35,20 +35,20 @@ let MemberController = class MemberController {
 };
 exports.MemberController = MemberController;
 __decorate([
-    (0, common_1.Get)("all"),
+    (0, common_1.Get)(""),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MemberController.prototype, "findAllMembers", null);
 __decorate([
-    (0, common_1.Post)("register"),
+    (0, common_1.Post)(""),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [member_dto_request_1.MemberRequest]),
     __metadata("design:returntype", Promise)
 ], MemberController.prototype, "registerMember", null);
 __decorate([
-    (0, common_1.Put)("update/:id"),
+    (0, common_1.Put)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)('name')),
     __metadata("design:type", Function),
@@ -56,14 +56,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MemberController.prototype, "updateMember", null);
 __decorate([
-    (0, common_1.Delete)("delete/:id"),
+    (0, common_1.Delete)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], MemberController.prototype, "deleteMember", null);
 exports.MemberController = MemberController = __decorate([
-    (0, common_1.Controller)("member"),
+    (0, common_1.Controller)("members"),
     __metadata("design:paramtypes", [member_service_1.MemberService])
 ], MemberController);
 //# sourceMappingURL=member.controller.js.map
