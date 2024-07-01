@@ -1,0 +1,6 @@
+type Todo {
+    todoId: Int!
+    title: String!
+    contents: String!
+    member: Member
+}

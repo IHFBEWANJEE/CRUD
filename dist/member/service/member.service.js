@@ -30,6 +30,10 @@ let MemberService = class MemberService {
         const result = await this.memberRepository.delete(id);
         return result ? "successfully deleted" : "Something was wrong";
     }
+    async getTodos(id) {
+        const result = await this.memberRepository.findOneBy({ memberId: id });
+        return result.todos;
+    }
     async getAllMembers() {
         return await this.memberRepository.find();
     }

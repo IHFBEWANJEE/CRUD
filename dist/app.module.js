@@ -33,7 +33,11 @@ exports.AppModule = AppModule = __decorate([
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 playground: true,
-                autoSchemaFile: true,
+                typePaths: ['./**/*.graphql'],
+                definitions: {
+                    path: `${process.cwd()}/src/graphql.ts`,
+                    outputAs: 'class'
+                },
             }),
             member_module_1.MemberModule,
             todo_module_1.TodoModule,

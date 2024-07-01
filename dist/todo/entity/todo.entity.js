@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Todo = void 0;
 const typeorm_1 = require("typeorm");
 const member_entity_1 = require("../../member/entity/member.entity");
-const graphql_1 = require("@nestjs/graphql");
 let Todo = class Todo {
     constructor(partial) {
         if (partial) {
@@ -23,38 +22,31 @@ let Todo = class Todo {
 };
 exports.Todo = Todo;
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.ID),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], Todo.prototype, "todoId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Todo.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Todo.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Todo.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], Todo.prototype, "updatedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => member_entity_1.Member, { nullable: false }),
     (0, typeorm_1.ManyToOne)(() => member_entity_1.Member, (member) => member.todos, { onDelete: 'CASCADE' }),
     (0, typeorm_1.JoinColumn)({ name: "memberId" }),
     __metadata("design:type", member_entity_1.Member)
 ], Todo.prototype, "member", void 0);
 exports.Todo = Todo = __decorate([
-    (0, graphql_1.ObjectType)(),
     (0, typeorm_1.Entity)("todo"),
     __metadata("design:paramtypes", [Object])
 ], Todo);

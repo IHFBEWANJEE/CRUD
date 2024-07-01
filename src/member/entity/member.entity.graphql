@@ -1,0 +1,20 @@
+type Member {
+    memberId: Int!
+    email: String!
+    password: String!
+    name: String!
+    todos : [Todo]
+}
+input UpdateMemberNameInput {
+    id: Int!
+    name: String!
+}
+
+type Query {
+    findAllMembers: [Member]
+    findMember(id: Int!): Member
+}
+
+type Mutation {
+    updateMember(input: UpdateMemberNameInput!): Member
+}

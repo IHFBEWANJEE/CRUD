@@ -4,6 +4,7 @@ import {Member} from "../entity/member.entity";
 import {Repository} from "typeorm";
 import {MemberRequest} from "./dto/request/member.dto.request";
 import {UpdateMemberNameInput} from "../entity/input/update-member-name.input";
+import {Todo} from "../../todo/entity/todo.entity";
 
 @Injectable()
 export class MemberService {
@@ -21,6 +22,11 @@ export class MemberService {
     async deleteById(id: number): Promise<string> {
         const result = await this.memberRepository.delete(id);
         return result ? "successfully deleted" : "Something was wrong";
+    }
+
+    async getTodos(id: number): Promise<Todo[]> {
+        const result = await this.memberRepository.findOneBy({memberId: id});
+        return result.todos;
     }
 
     async getAllMembers(): Promise<Member[]> {

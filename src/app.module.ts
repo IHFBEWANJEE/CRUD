@@ -21,12 +21,12 @@ import {ProductModule} from "./product/module/product.module";
         GraphQLModule.forRoot<ApolloDriverConfig>({
             driver: ApolloDriver,
             playground: true,
-            autoSchemaFile: true,
+            typePaths: ['./**/*.graphql'],
             // typePaths: ['./**/*.graphql'], // 스키마 우선 접근 방식
-            // definitions: {
-            //     path: `${process.cwd()}/src/graphql.ts`, // GraphQL SDL 유형에 해당하는 Typescript 정의
-            //     //outputAs: 'class' 기본적으로 생성된 모든 Typescript 유형은 인터페이스. 대신 클래스로 생성하려면 이와 같이
-            // },
+            definitions: {
+                path: `${process.cwd()}/src/graphql.ts`, // GraphQL SDL 유형에 해당하는 Typescript 정의
+                outputAs: 'class' // 기본적으로 생성된 모든 Typescript 유형은 인터페이스. 대신 클래스로 생성하려면 이와 같이
+            },
             // plugins: [ApolloServerPluginLandingPageLocalDefault()] // Apollo SandBox
         }),
         MemberModule,

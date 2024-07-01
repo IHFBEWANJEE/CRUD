@@ -1,5 +1,5 @@
-import {Field, ID, InputType} from "@nestjs/graphql";
 import {IsNotEmpty} from "class-validator";
+import {Field, ID, InputType} from "@nestjs/graphql";
 
 @InputType()
 export class UpdateMemberNameInput {
@@ -7,7 +7,7 @@ export class UpdateMemberNameInput {
     @IsNotEmpty()
     id: number
 
-    @Field(() => String)
+    @Field()
     @IsNotEmpty()
     name: string
 }
