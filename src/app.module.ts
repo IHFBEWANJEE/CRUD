@@ -15,7 +15,7 @@ import {ProductModule} from "./product/module/product.module";
         ConfigModule.forRoot({
             isGlobal: true
         }),
-        TypeOrmModule.forRootAsync({
+        TypeOrmModule.forRootAsync({//
             useClass: TypeOrmConfigService
         }),
         GraphQLModule.forRoot<ApolloDriverConfig>({
